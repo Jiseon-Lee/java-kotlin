@@ -1,0 +1,60 @@
+<html>
+<head>
+	<title>Document</title>
+	<style>
+		body { margin:0; }	/* body 태그에서만 margin으로 안쪽 여백을 지정함(padding은 적용안됨) */
+
+		.mBox { width: 100px; height: 100px;}
+
+		#mBox1 { 
+			background-color: #0f0;
+			margin: 10px;				/* mBox1의 상하좌우에 10px의 여백을 지정 */
+			margin-top: 5px;			/* mBox1의 윗쪽 여백 지정 */
+			margin-left: 10px;			/* mBox1의 왼쪽 여백 지정 */
+			margin-right: 15px;			/* mBox1의 오른쪽 여백 지정 */
+			margin-bottom: 20px;		/* mBox1의 아랫쪽 여백 지정 */
+			/* 같은 선택자 안에서 지정한 스타일은 마지막에 지정한 값이 적용됨 */
+		}
+		#mBox2 { 
+			background-color: #00f;
+			margin: 5px;					/* 상하좌우 5 */
+			margin: 5px 10px;				/* 상하 5, 좌우 10 */
+			margin: 5px 10px 15px;			/* 상 5, 좌우 10, 하 15 */
+			margin: 5px 10px 15px 20px;		/* 상 5, 우 10, 하 15, 좌 20 */
+		}
+		#mBox3 { 
+			background-color: #f00;
+			margin: 0 auto;
+		}
+		/* 여백 겹침 현상(margin collapsing) : 두 박스 사이의 여백이 겹칠 경우 둘 중 큰 값으로 적용됨 */
+
+		/* pBox는 너비만 300px, 배경색 gray, 바깥쪽 여백은 0로 지정 */
+		.pBox { width: 300px; background-color: gray; margin: 0px; }
+
+		#pBox1 { padding: 20px; }
+		#pBox2 { padding: 20px 50px;}
+		#pBox3 { padding: 20px 50px 30px;}
+		#pBox4 { padding: 20px 50px 30px 70px;}
+		/*
+		padding도 margin처럼 특정 방향에만 여백을 지정할 수 있음
+		padding-top, padding-left, padding-right, padding-bottom 사용 가능
+
+		CSS로 여백을 지정하면 margin과 padding 상관없이 모두 크기가 여백만큼 늘어남
+		*/
+	</style>
+</head>
+<body>
+<!--
+div 태그 : 블록요소나 인라인 요소들을 묶기 위한 태그로 기본적으로 여백이 0인 태그
+ - 주로 레이아웃용으로 사용되어 예전 table 태그를 대체하는 용도로 사용됨
+-->
+<div class="mBox" id="mBox1">BOX 1</div>
+<div class="mBox" id="mBox2">BOX 2</div>
+<div class="mBox" id="mBox3">BOX 3</div>
+<br /><br />
+<div class="pBox" id="pBox1">박스의 상하좌우에 모두 20px의 안쪽 여백</div>
+<div class="pBox" id="pBox2">박스의 상하에 20px, 좌우에 50px의 안쪽 여백</div>
+<div class="pBox" id="pBox3">상 20px, 좌우 50px, 하 30px의 안쪽 여백</div>
+<div class="pBox" id="pBox4">상 20px, 우 50px, 하 30px, 좌70px의 안쪽 여백</div>
+</body>
+</html>

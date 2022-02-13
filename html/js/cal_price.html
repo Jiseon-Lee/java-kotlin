@@ -1,0 +1,54 @@
+<html>
+<head>
+	<title>Document</title>
+	<script>
+	var price = 100000;
+	// var etcArr = new Array(0, 2000, 1500, 5000); // 배열로 받아왔지만 이것보다는 둘다 value에 넣고 구분자로 불러오는게 더 좋음
+	function calPrice() {
+		var frm = document.frm;		// 현 문서의 frm 폼을 frm에 저장
+		var cnt = frm.cnt.value;	// 위에서 저장한 frm 안에 있는 cnt컨트롤의 값
+		var opt = frm.opt.value;	// 위에서 저장한 frm 안에 있는 opt컨트롤의 값
+		
+		var tmpPrice = price;
+		if (opt != "") {	// 특정 옵션을 선택했으면
+			tmpPrice += parseInt(opt.substring(opt.indexOf(":") + 1));
+			// 옵션에서 추가되는 금액 부분만을 추출하여 정수로 변경한 후 상품가격에 더함
+		}
+
+		var total = cnt * tmpPrice;
+		// 선택한 옵션과 개수에 맞는 상품 총 가격을 계산
+		var obj = document.getElementById("pr");
+		obj.innerHTML = total;
+	}
+	</script>
+</head>
+<body>
+<!-- 
+상품 개수를 변경했을 때 가격이 개수에 맞춰 변경되어야 함
+언제 : 상품 개수를 변경했을 때 ~ cnt 컨트롤의 값이 변경되었을 때(cnt 콤보박스에서 onchange 이벤트가 발생했을 때)
+어떻게 : 총 가격을 선택한 상품 개수에 맞춰 변경시킴 - cnt 컨트롤의 값과 상품 가격을 곱하여 표시해줌
+ - cnt 컨트롤의 값 : cnt 콤보박스의 값을 함수로 보냄
+ - 상품 가격 : 미리 변수에 저장해 놓음
+ - 표시 : 개수와 가격을 곱하여 새로운 값으로 표시해줌 - 표시할 데이터가 들어있는 곳을 span 등의 요소로 묶고 id 등으로 표시해 놓음
+-->
+<form name="frm">
+상품 개수 : 
+<select name="cnt" onchange="calPrice();">
+	<option value="1"> 1개 </option>		<option value="2"> 2개 </option>
+	<option value="3"> 3개 </option>		<option value="4"> 4개 </option>
+	<option value="5"> 5개 </option>		<option value="6"> 6개 </option>
+	<option value="7"> 7개 </option>		<option value="8"> 8개 </option>
+	<option value="9"> 9개 </option>		<option value="10"> 10개 </option>
+</select>
+<br />
+옵션 추가 : 
+<select name="opt" onchange="calPrice()">
+	<option value=""> 옵션 선택 </option>
+	<option value="a:2000"> 신발끈 검정 추가(+2000) </option>	<!-- 어떤 것을 선택했는지를 알기 위해서 품목의 이름과 가격을 둘 다 value에 넣어줌, :으로 구분 -->
+	<option value="b:1500"> 신발끈 하양 추가(+1500) </option>
+	<option value="c:5000"> 깔창 추가(+5000) </option>
+</select>
+상품 총 가격 : <span id="pr">100000</span>원		<!-- 전체를 p로 묶는 것보다 가격만 span으로 묶는 것이 더 편함. span은 인라인 요소이므로 중간에 써도 상관 없음 -->
+</form>
+</body>
+</html>

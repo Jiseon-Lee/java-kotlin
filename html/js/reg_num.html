@@ -1,0 +1,115 @@
+<html>
+<head>
+	<title>Document</title>
+	<style>
+		form { width: 500px; }
+		.reg { width: 100px; }
+	</style>
+	<script>
+	/*
+	1. r1과 r2에는 숫자만 입력되게 해야 함
+	 - r1과 r2에 입력할 때마다(onkeyup) 입력된 값이 숫자인지 검사한 후 숫자가 아니면 입력불가 
+	*/
+	function onlyNum(obj) {
+		if (isNaN(obj.value)) {	// 받아온 컨트롤의 값이 숫자가 아니면
+			obj.value = "";		// 컨트롤의 값을 비움
+		}
+	}
+
+	/*
+	2. r1 텍스트필드에 6개의 숫자를 입력하면 자동으로 r2로 커서를 이동시킴
+	 - r1 텍스트필드에 입력할 때마다(onkeyup) 숫자의 개수를 검사한 후 6개가 되면 이동
+	*/
+	function move(val) {
+	// 받아온 값이 6글자이면 r2로 커서를 이동시킴
+		if (val.length == 6) {
+			document.frm.r2.focus();
+			// val이 6자이면 현 문서안의 frm 폼안의 r2컨트롤로 포커스를 옮김
+			// focus() 대신 select()를 사용하면 해당 컨트롤의 글자들을 블록잡음
+		}
+	}
+
+	/* 
+	3. [적용] 버튼을 클릭하면 주민등록번호에 대해 검사한 후 성별, 나이, 생일 등의 값을 출력함	
+	 - r1과 r2에 각각 값이 들어있는지 검사
+	*/
+	function regNum() {
+		var frm = document.frm;		// 현 문서안에 있는 frm 이라는 폼 요소를 변수 frm에 넣음
+		var r1 = frm.r1.value;		var r2 = frm.r2.value;
+		// 입력받은 주민등록번호를 받아옴
+
+		var msg = "";	// 오류 메시지를 지정할 변수로 비어 있으면 오류가 없는 걸 의미
+		if (r1 == "")				msg = "주민등록번호 첫자리를 6자리 숫자로 입력하세요.";		// 첫번째가 빈 문자열일때
+		else if (r1.length != 6)	msg = "주민등록번호 첫자리를 6자리 숫자로 입력하세요.";
+		if (msg != "") {
+			alert(msg);			// 오류 메시지 출력
+			frm.r1.value = "";	// 잘못 입력된 값 삭제
+			frm.r1.focus();		// 입력할 컨트롤로 포커스 이동
+			return;				// regNum() 함수 강제 종료
+		}
+
+		var msg = "";	// 오류 메시지를 지정할 변수로 비어 있으면 오류가 없는 걸 의미
+		if (r2 == "")				msg = "주민등록번호 두번째 자리를 7자리 숫자로 입력하세요.";
+		else if (r2.length != 7)	msg = "주민등록번호 두번째 자리를 7자리 숫자로 입력하세요.";
+		if (msg != "") {
+			alert(msg);
+			frm.r2.value = "";
+			frm.r2.focus();
+			return;
+		}
+
+		var g = "m";
+		if (r2.charAt(0) % == 0) {
+			g = "f";
+		}
+
+		var g = (r2.charAt(0) % 2  == 0) ? "f" : "m";
+		// 성별구분자가 짝수이면 여자(f), 홀수이면 남자(m)의 값을 g에 저장
+		var gender = frm.gender;
+		// 현 문서의 폼안에 있는 gender 컨트롤을 받아옴(gender라는 이름의 컨트롤이 두 개이므로 배열로 받아옴)
+		for (var i = 0; i < gender.length; i++) {
+		// gender배열의 요수 수 만큼 루프를 돌림
+			if (g == gender[i].value) 		gender[i].checked = true;	// 라디오 버튼과 체크박스에서 선택하게 함
+			// 주민등록번호에 있는 성별구분자로 구한 성별값과 동일한 value를 가진 gender 컨트롤을 선택된 상태로 작업
+		}
+
+		// 나이 계산(현재 연도 - 태어난 연도)
+		var today = new Date();		// 오늘 날짜 및 현재 시간 객체 생성
+		var cYear = today.getFullYear();	// 현재 연도	손으로 쓰면 해가 지날때마다 코드를 고쳐줘야 함
+
+		var bYear = "19" + r1.substring(0, 2);	
+		if (r2.charAt(0) >= "3")	bYear = "20" + r1.substring(0, 2);	// 2000년대 생에 대한 처리		// 여기서 비교를 숫자3으로 하면 어떻게되지?
+
+		frm.age.value = cYear - parseInt(bYear);	// 스트링과 숫자를 더하면 스트링으로 출력하지만 스트링과 숫자를 빼면 숫자로 계산
+
+		// 생일 출력
+		var bMonth = r1.substring(2, 4);
+		var bDay = r1.substring(4);
+		var obj = document.getElementById("birth");
+		obj.innerHTML = bYear + "년 " + bMonth + "월 " + bDay + "일 생";
+	}
+	
+	</script>
+</head>
+<body>
+<h2>주민등록번호 이용</h2>
+<form name="frm" />
+<fieldset>
+	<legend></legend>
+	주민등록번호 : 
+	<input type="text" class="reg" name="r1" maxlength="6" onkeyup="onlyNum(this); move(this.value)" />-
+	<input type="text" class="reg" name="r2" maxlength="7" onkeyup="if (isNaN(this.value)) this.value='';" />
+	<input type="button" value="적용" onclick="regNum();" />
+	<br /><br />
+	성별 : 
+	<input type="radio" name="gender" value="m" />남자
+	<input type="radio" name="gender" value="f" />여자
+	<br />
+	나이 : 
+	<input type="text" class="age" name="age" /> 세
+	<br />
+	생일 : <span id="birth"></span>
+</fieldset>
+</form>
+</body>
+</html>

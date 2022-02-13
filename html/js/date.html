@@ -1,0 +1,65 @@
+<html>
+<head>
+	<title>Document</title>
+</head>
+<body>
+<script>
+function getDateFormat(date) {
+	var y = date.getFullYear();
+	var m = (date.getMonth() + 1 < 10) ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+	var d = (date.getDate() < 10) ? "0" + date.getDate() : date.getDate();
+
+	var h = (date.getHours() < 10) ? "0" + date.getHours() : date.getHours();
+	var n = (date.getMinutes() < 10) ? "0" + date.getMinutes() : date.getMinutes();
+	var s = (date.getSeconds() < 10) ? "0" + date.getSeconds() : date.getSeconds();
+	var ms = (date.getMilliseconds() < 10) ? "0" + date.getMilliseconds() : date.getMilliseconds();
+
+	return y + "-" + m + "-" + d + " " + h + ":" + n + ":" + s + "." + ms;
+}
+
+function getDateFormat1(date) {
+// 받아온 Date객체를 이용하여 yyyy-mm-dd hh:mm:ss 형으로 날짜/시간 문자열을 리턴하는 함수
+	var today = new Array(date.getFullYear(), date.getMonth() + 1, date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds());
+	for (var i = 1; i < 6; i++) {
+		if (today[i] < 10) {
+			today[i] = "0" + today[i]
+		}
+	}
+	return (today[0] + "-" + today[1] + "-" + today[2] + " " + today[3] + ":" + today[4] + ":" + today[5]);
+}
+
+var br = "<br />";
+var today = new Date();	// 오늘 날짜 및 현재 시간으로 Date객체 생성
+
+document.write(today + br);		// Wed Jan 26 2022 12:07:30 GMT+0900 (한국 표준시)
+document.write(today.toUTCString() + br);	// Wed, 26 Jan 2022 03:08:44 GMT
+document.write(today.toDateString() + br);	// Wed Jan 26 2022
+document.write("<hr />");
+
+document.write("today : " + getDateFormat(today) + br);							// 2022-01-26 12:46:46.353
+document.write("today.getDate() : " + today.getDate() + br);					// 26
+document.write("today.getDay() : " + today.getDay() + br);						// 3
+document.write("today.getFullYear() : " + today.getFullYear() + br);			// 2022
+document.write("today.getHours() : " + today.getHours() + br);					// 12
+document.write("today.getMilliseconds() : " + today.getMilliseconds() + br);	// 353
+document.write("today.getMinutes() : " + today.getMinutes() + br);				// 46
+document.write("today.getMonth() : " + today.getMonth() + br);					// 0 (0~11로 월이 표현)
+document.write("today.getSeconds() : " + today.getSeconds() + br);				// 46
+document.write("today.getTime() : " + today.getTime() + br);					// 1643168806353
+
+today.setDate(15);		// 날짜의 일(day)을 15일로 변경
+document.write("today.setDate(15) : " + getDateFormat(today) + br);
+today.setFullYear(2023);		// 날짜의 일(day)을 15일로 변경
+document.write("today.setFullYear(2023) : " + getDateFormat(today) + br);
+today.setHours(22);		// 날짜의 일(day)을 15일로 변경
+document.write("today.setHours(22) : " + getDateFormat(today) + br);
+today.setMinutes(57);		// 날짜의 일(day)을 15일로 변경
+document.write("today.setMinutes(57) : " + getDateFormat(today) + br);
+today.setMonth(11);		// 날짜의 일(day)을 15일로 변경
+document.write("today.setMonth(11) : " + getDateFormat(today) + br);
+today.setTime(today.getTime() + 1000 * 60 * 60 * 24);
+document.write("today.setTime(today.getTime() + 1000 * 60 * 60 * 24) : " + getDateFormat(today));
+
+</script>
+</body>
+</html>

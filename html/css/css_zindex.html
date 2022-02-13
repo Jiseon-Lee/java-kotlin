@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title>Document</title>
+	<style>
+		.box { 
+			width: 100px; height: 100px; border: 1px solid black; 
+			position: absolute; padding: 10px;
+		}
+		#box1 { background: yellow; top: 100px; left: 100px; z-index: 30; }
+		#box2 { background: orange; top: 130px; left: 120px; z-index: 20; }
+		#box3 { background: teal; top: 160px; left: 140px; z-index: 10; }
+		/*
+		여러 요소의 위치가 겹칠 경우 기본적으로 마지막에 생성하는 요소 가장 앞에 보이게 됨
+		z-index 속성을 이용하면 값이 큰 순으로 재배치할 수 있음
+		*/
+	</style>
+</head>
+<body>
+<h2>박스의 겹치는 순서 지정(Z-index)</h2>
+<!--
+3개의 div 박스 제작
+ 모든 박스는 너비 : 100, 높이 100, 경계선 : 검은색 실선, 색상 : yellow, orange, teal
+-->
+<div class="box" id="box1"></div>
+<div class="box" id="box2"></div>
+<div class="box" id="box3"></div>
+</body>
+</html>

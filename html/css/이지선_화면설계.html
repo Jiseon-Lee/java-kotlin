@@ -1,0 +1,76 @@
+<html>
+<head>
+	<title>Document</title>
+	<style>
+		.form { width: 350px; border: 1px solid black; padding: 5px; }
+		
+		.button { text-align: center; padding-top: 20px; }
+
+		.but { margin: 0 10px;  }
+	</style>
+</head>
+<body>
+<div class="form">
+<form name="frm" action="" method="post">
+	<fieldset>
+		<legend>납품자 정보</legend>
+		<ol>
+			<li>
+				<label for="name">납품자명 : </label>
+				<input type="text" id="name" name="name" value="name"/>
+			</li>
+			<li>
+				<label for="email">전자메일 : </label>
+				<input type="email" id="email" name="email" value="test@naver.com"/>
+			</li>
+			<li>
+				<label for="page">홈페이지 : </label>
+				<input type="url" id="page" name="page" value="http://"/>
+			</li>
+		</ol>
+	</fieldset>
+	<fieldset>
+		<legend>납품 정보</legend>
+		<ul>
+			<li>
+				<label for="pdt">상품이름 : </label>
+				<input type="text" id="pdt" name="pdt" list="names"/>
+				<datalist id="names">
+					<option value="pdt1001">런닝화</option>
+					<option value="pdt1002">농구화</option>
+					<option value="pdt1003">축구화</option>
+				</datalist>
+			</li>
+			<li>
+				<label for="pdc">납품수량 : </label>
+				<input type="text" id="pdc" name="pdc" placeholder="최소 10"/>
+			</li>
+			<li>
+				<label for="pdg">납품등급 : </label>
+				<input type="range" id="pdg" name="pdg" min="0" max="10" step="2"/>
+			</li>
+			<li>
+				<label for="area">납품지역 : </label>
+				<select size="5" id="area" name="area" multiple="multiple">
+					<optgroup label="서울지역">
+						<option value="gangnam">강남구</option>
+						<option value="seodaemun">서대문구</option>
+						<option value="mapo">마포구</option>
+					</optgroup>
+					<optgroup label="경기지역">
+						<option value="gwacheon">과천시</option>
+						<option value="bucheon">부천시</option>
+						<option value="anyang">안양시</option>
+					</optgroup>
+				</select>
+			</li>
+		</ul>
+	</fieldset>
+	<div class="button">
+	<input class="but" type="submit" value="납품서 제출"/>
+	<input class="but" type="reset" value="다시 작성"/>
+	</div>
+</form>
+</div>
+</body>
+</html>

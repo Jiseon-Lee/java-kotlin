@@ -1,0 +1,78 @@
+<html>
+<head>
+	<title>Document</title>
+</head>
+<body>
+<form>
+<table width="700" border="0" cellspacing="1"  cellpadding="5" bgcolor="c1c1c1">
+<tr>
+	<td align="center" bgcolor="#efefef"><label for="name"><b>이름</b></label></td>
+	<td bgcolor="#ffffff">
+		<input type="text" id="name" name="name" />
+	</td>
+</tr>
+<tr>
+	<td align="center" bgcolor="#efefef"><label for="uid"><b>아이디</b></label></td>
+	<td bgcolor="#ffffff">
+		<input type="text" id="uid" name="uid" />
+		<input type="button" id="" name="" value="아이디 중복 확인" /><br />
+		* 영문 혹은 영문 숫자 조합으로만 작성하세요.
+	</td>
+</tr>
+<tr>
+	<td align="center" bgcolor="#efefef"><label for="pwd"><b>비밀번호</b></label></td>
+	<td bgcolor="#ffffff"><input type="password" id="pwd" name="pwd" /></td>
+</tr>
+<tr>
+	<td align="center" bgcolor="#efefef"><label for="pwd_check"><b>비밀번호 확인</b></label></td>
+	<td bgcolor="#ffffff"><input type="password" id="pwd_check" name="pwd_check" /></td>
+</tr>
+<tr>
+	<td align="center" bgcolor="#efefef"><label for="email"><b>이메일</b></label></td>
+	<td bgcolor="#ffffff">
+		<input type="text" id="email" name="email" /> @ 
+		<select>
+			<option>도메인 선택</option>
+			<option value="naver.com">네이버</option>
+			<option value="nate.com">네이트</option>
+			<option value="daum.com">다음</option>
+		</select> &nbsp;&nbsp;&nbsp;
+		<input type="checkbox" checked="checked" id="show" name="show" /><label for="show">공개</label>
+		<input type="checkbox" checked="checked" id="y" name="y" /><label for="y">수신 동의</label>
+	</td>
+</tr>
+<tr>
+	<td align="center" bgcolor="#efefef"><label for="phone"><b>휴대폰</b></label></td>
+	<td bgcolor="#ffffff">
+		<select>
+			<option>010</option>
+			<option>016</option>
+			<option>019</option>
+		</select> - 
+		<input type="text" id="phone" name="phone" maxlength="4"/> - 
+		<input type="text" id="phone" name="phone" maxlength="4"/>
+	</td>
+</tr>
+<tr>
+	<td align="center" bgcolor="#efefef"><label for="zip_code"><b>우편번호</b></label></td>
+	<td bgcolor="#ffffff">
+		<input type="text" id="zip_code" name="zip_code" />
+		<input type="button" id="zip_code" name="zip_code" value="우편번호 검색" />
+	</td>
+</tr>
+<tr>
+	<td align="center" bgcolor="#efefef"><label for="address"><b>주소</b></label></td>
+	<td bgcolor="#ffffff">
+		<input type="text" id="address" name="address" readonly="readonly" />
+		<input type="text" id="address" name="address" />
+	</td>
+</tr>
+<tr>
+	<td align="center" bgcolor="#efefef"><label for="coment"><b>코멘트</b></label></td>
+	<td bgcolor="#ffffff"><textarea rows="5" cols="50" id="coment" name="coment"></textarea></td>
+</tr>
+</table>
+<input type="submit" value="회원 가입" /><input type="reset" value="다시 입력" />
+</form>
+</body>
+</html>
